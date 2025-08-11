@@ -300,5 +300,7 @@ namespace AvaloniaImGuiExample
             _gl.DeleteTexture(_fontTexture);
             ImGui.DestroyContext();
         }
+
+        
     }
 }

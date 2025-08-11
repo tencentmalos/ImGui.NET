@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using Avalonia.Controls;
+using Avalonia.Input;
 using ImGuiNET;
 using Silk.NET.OpenGL;
 
@@ -22,6 +23,11 @@ namespace AvaloniaImGuiExample
             
             // Subscribe to ImGui render event
             ImGuiControl.OnImGuiRender += OnImGuiRender;
+        }
+
+        protected override void OnPointerPressed(PointerPressedEventArgs e)
+        {
+            base.OnPointerPressed(e);
         }
 
         private void OnImGuiRender(GL gl, ImGuiController controller)
@@ -98,5 +104,6 @@ namespace AvaloniaImGuiExample
             ImGui.ShowStyleEditor();
             ImGui.End();
         }
+
     }
 }

@@ -6,7 +6,6 @@
         Width="1200"
         Height="800">
     
-    <Grid>
-        <local:ImGuiControl Name="ImGuiControl"/>
-    </Grid>
+    <local:ImGuiControl Name="ImGuiControl" Focusable="True"/>
+
 </Window>
