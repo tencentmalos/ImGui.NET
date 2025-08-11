@@ -1,0 +1,12 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="using:AvaloniaImGuiExample"
+        x:Class="AvaloniaImGuiExample.MainWindow"
+        Title="Avalonia ImGui Example"
+        Width="1200"
+        Height="800">
+    
+    <Grid>
+        <local:ImGuiControl Name="ImGuiControl" />
+    </Grid>
+</Window>
