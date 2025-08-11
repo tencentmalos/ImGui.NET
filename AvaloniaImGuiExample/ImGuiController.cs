@@ -20,10 +20,6 @@ namespace AvaloniaImGuiExample
         private int _windowWidth;
         private int _windowHeight;
 
-        private readonly Dictionary<ImGuiKey, bool> _keyStates = new();
-        private readonly Dictionary<ImGuiMouseButton, bool> _mouseStates = new();
-        private Vector2 _mousePosition;
-        private float _mouseWheel;
 
         public ImGuiController(GL gl, int width, int height)
         {
@@ -54,21 +50,6 @@ namespace AvaloniaImGuiExample
             var io = ImGui.GetIO();
             io.DisplaySize = new Vector2(width, height);
             io.DeltaTime = deltaTime;
-
-            // Update mouse state
-            io.AddMousePosEvent(_mousePosition.X, _mousePosition.Y);
-            foreach (var (button, pressed) in _mouseStates)
-            {
-                io.AddMouseButtonEvent((int)button, pressed);
-            }
-            io.AddMouseWheelEvent(0, _mouseWheel);
-            _mouseWheel = 0;
-
-            // Update keyboard state
-            foreach (var (key, pressed) in _keyStates)
-            {
-                io.AddKeyEvent(key, pressed);
-            }
         }
 
         public void Render(ImDrawDataPtr drawData)
@@ -190,30 +171,6 @@ namespace AvaloniaImGuiExample
             _gl.Disable(EnableCap.ScissorTest);
         }
 
-        public void UpdateMousePosition(float x, float y)
-        {
-            _mousePosition = new Vector2(x, y);
-        }
-
-        public void UpdateMouseButton(ImGuiMouseButton button, bool pressed)
-        {
-            _mouseStates[button] = pressed;
-        }
-
-        public void UpdateMouseWheel(float wheel)
-        {
-            _mouseWheel += wheel;
-        }
-
-        public void UpdateKeyState(ImGuiKey key, bool pressed)
-        {
-            _keyStates[key] = pressed;
-        }
-
-        public void AddInputCharacter(char c)
-        {
-            ImGui.GetIO().AddInputCharacter(c);
-        }
 
         public void WindowResized(int width, int height)
         {

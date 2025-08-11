@@ -7,6 +7,6 @@
         Height="800">
     
     <Grid>
-        <local:ImGuiControl Name="ImGuiControl" />
+        <local:ImGuiControl Name="ImGuiControl"/>
     </Grid>
 </Window>
