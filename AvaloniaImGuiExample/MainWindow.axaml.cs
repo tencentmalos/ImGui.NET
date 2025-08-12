@@ -25,10 +25,10 @@ namespace AvaloniaImGuiExample
             ImGuiControl.OnImGuiRender += OnImGuiRender;
         }
 
-        protected override void OnPointerPressed(PointerPressedEventArgs e)
-        {
-            base.OnPointerPressed(e);
-        }
+        //protected override void OnPointerPressed(PointerPressedEventArgs e)
+        //{
+        //    base.OnPointerPressed(e);
+        //}
 
         private void OnImGuiRender(GL gl, ImGuiController controller)
         {

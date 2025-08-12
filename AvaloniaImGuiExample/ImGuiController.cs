@@ -139,7 +139,9 @@ namespace AvaloniaImGuiExample
                         continue;
 
                     // Set scissor rectangle
-                    _gl.Scissor((int)cmd.ClipRect.X, 
+                    //_gl.Scissor(0, 0, (uint)_windowWidth, (uint)_windowHeight);
+
+                    _gl.Scissor((int)cmd.ClipRect.X,
                         (int)(_windowHeight - cmd.ClipRect.W),
                         (uint)(cmd.ClipRect.Z - cmd.ClipRect.X),
                         (uint)(cmd.ClipRect.W - cmd.ClipRect.Y));
@@ -172,11 +174,11 @@ namespace AvaloniaImGuiExample
         }
 
 
-        public void WindowResized(int width, int height)
-        {
-            _windowWidth = width;
-            _windowHeight = height;
-        }
+        //public void WindowResized(int width, int height)
+        //{
+        //    _windowWidth = width;
+        //    _windowHeight = height;
+        //}
 
         private void CreateDeviceObjects()
         {

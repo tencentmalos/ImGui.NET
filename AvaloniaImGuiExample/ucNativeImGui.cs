@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace AvaloniaImGuiExample
 {
-    public class NativeImGuiControl : OpenGlControlBase
+    public class ucNativeImGui : OpenGlControlBase
     {
         private GL? _gl;
         private ImGuiController? _controller;
@@ -28,13 +28,36 @@ namespace AvaloniaImGuiExample
 
         public event Action<GL, ImGuiController>? OnImGuiRender;
 
-        public NativeImGuiControl()
+        public double ToNativeDpiScale
+        {
+            get
+            {
+                double dpiScale = VisualRoot.RenderScaling;
+                if (OperatingSystem.IsMacOS())
+                {
+                    dpiScale = 1.0;
+                }
+                return dpiScale;
+            }
+        }
+
+        public int NativePixelWidth => (int)(Bounds.Width * ToNativeDpiScale);
+        public int NativePixelHeight => (int)(Bounds.Height * ToNativeDpiScale);
+
+
+        public ucNativeImGui()
         {
             // Enable focus to receive keyboard input
             Focusable = false;
             IsHitTestVisible = true;
             IsEnabled = true;
             IsVisible = true;
+        }
+
+
+        protected double ToNativeLength(double original)
+        {
+            return original * ToNativeDpiScale;
         }
 
         protected override void OnOpenGlInit(GlInterface gl)
@@ -45,7 +68,7 @@ namespace AvaloniaImGuiExample
             _gl = GL.GetApi(gl.GetProcAddress);
             
             // Initialize ImGui controller
-            _controller = new ImGuiController(_gl, (int)Bounds.Width, (int)Bounds.Height);
+            _controller = new ImGuiController(_gl, NativePixelWidth, NativePixelHeight);
             
             // Setup render loop
             DispatcherTimer.Run(() =>
@@ -68,7 +91,7 @@ namespace AvaloniaImGuiExample
             UpdateInputState();
 
             // Update ImGui
-            _controller.Update(deltaTime, (int)Bounds.Width, (int)Bounds.Height);
+            _controller.Update(deltaTime, NativePixelWidth, NativePixelHeight);
 
             // Begin new frame
             ImGui.NewFrame();
@@ -157,7 +180,9 @@ namespace AvaloniaImGuiExample
         protected override void OnSizeChanged(SizeChangedEventArgs e)
         {
             base.OnSizeChanged(e);
-            _controller?.WindowResized((int)e.NewSize.Width, (int)e.NewSize.Height);
+
+            //Do not need here
+            //_controller?.WindowResized((int)(e.NewSize.Width * dpiScale), (int)(e.NewSize.Height * dpiScale));
         }
 
         private static ImGuiKey GetImGuiKey(Key key)

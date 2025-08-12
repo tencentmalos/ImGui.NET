@@ -5,7 +5,5 @@
         Title="Avalonia ImGui Example"
         Width="1200"
         Height="800">
-    
-    <local:ImGuiControl Name="ImGuiControl" Focusable="True"/>
-
+    <local:ucImGui Name="ImGuiControl" Focusable="True"/>
 </Window>
