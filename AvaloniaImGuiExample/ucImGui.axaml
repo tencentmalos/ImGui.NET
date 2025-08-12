@@ -6,7 +6,7 @@
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaImGuiExample.ucImGui">
 	<Grid>
-	    <local:ucNativeImGui Name="_nativeControl" Focusable="True"/>
+	    <local:ucNativeImGui Name="_nativeControl"/>
 		<!--For add valid hit test here, by default OpenGlControlBase can ignore input here.-->
 		<Panel Background="Transparent" IsHitTestVisible="True" Opacity="0"></Panel>
 	</Grid>

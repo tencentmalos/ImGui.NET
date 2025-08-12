@@ -24,14 +24,22 @@ public partial class ucImGui : UserControl
         // Enable focus to receive keyboard input
         Focusable = true;
 
+        PointerPressed += HandlePointerPressed;
+        PointerReleased += HandlePointerReleased;
+        PointerMoved += HandlePointerMoved;
+        PointerWheelChanged += HandlePointerWheelChanged;
+        KeyDown += HandleKeyDown;
+        KeyUp += HandleKeyUp;
+        TextInput += HandleTextInput;
+
         // Subscribe to input events with tunneling (preview) events for higher priority
-        this.AddHandler(PointerPressedEvent, HandlePointerPressed, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
-        this.AddHandler(PointerReleasedEvent, HandlePointerReleased, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
-        this.AddHandler(PointerMovedEvent, HandlePointerMoved, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
-        this.AddHandler(PointerWheelChangedEvent, HandlePointerWheelChanged, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
-        this.AddHandler(KeyDownEvent, HandleKeyDown, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
-        this.AddHandler(KeyUpEvent, HandleKeyUp, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
-        this.AddHandler(TextInputEvent, HandleTextInput, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
+        //this.AddHandler(PointerPressedEvent, HandlePointerPressed, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
+        //this.AddHandler(PointerReleasedEvent, HandlePointerReleased, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
+        //this.AddHandler(PointerMovedEvent, HandlePointerMoved, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
+        //this.AddHandler(PointerWheelChangedEvent, HandlePointerWheelChanged, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
+        //this.AddHandler(KeyDownEvent, HandleKeyDown, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
+        //this.AddHandler(KeyUpEvent, HandleKeyUp, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
+        //this.AddHandler(TextInputEvent, HandleTextInput, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
     }
 
 
@@ -108,6 +116,8 @@ public partial class ucImGui : UserControl
         e.Handled = true;
     }
 
+
+
     private void HandleKeyDown(object? sender, KeyEventArgs e)
     {
         if (_nativeControl != null)
@@ -115,7 +125,7 @@ public partial class ucImGui : UserControl
             _nativeControl.InjectKeyState(e.Key, true);
         }
 
-        e.Handled = true;
+        e.Handled = false;
     }
 
     private void HandleKeyUp(object? sender, KeyEventArgs e)
@@ -125,7 +135,7 @@ public partial class ucImGui : UserControl
             _nativeControl.InjectKeyState(e.Key, false);
         }
 
-        e.Handled = true;
+        e.Handled = false;
     }
 
     private void HandleTextInput(object? sender, TextInputEventArgs e)

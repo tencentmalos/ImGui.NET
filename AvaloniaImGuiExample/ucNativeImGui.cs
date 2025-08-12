@@ -49,9 +49,6 @@ namespace AvaloniaImGuiExample
         {
             // Enable focus to receive keyboard input
             Focusable = false;
-            IsHitTestVisible = true;
-            IsEnabled = true;
-            IsVisible = true;
         }
 
 
@@ -143,7 +140,9 @@ namespace AvaloniaImGuiExample
         // Public methods for input injection from wrapper control
         public void InjectMousePosition(Vector2 position)
         {
-            _mousePosition = position;
+            _mousePosition.X = (float)ToNativeLength(position.X);
+            _mousePosition.Y = (float)ToNativeLength(position.Y);
+            //_mousePosition = position;
         }
 
         public void InjectMouseButton(int button, bool pressed)
@@ -170,11 +169,6 @@ namespace AvaloniaImGuiExample
             {
                 io.AddInputCharacter(c);
             }
-        }
-
-        protected override void OnPointerPressed(PointerPressedEventArgs e)
-        {
-            base.OnPointerPressed(e);
         }
 
         protected override void OnSizeChanged(SizeChangedEventArgs e)
