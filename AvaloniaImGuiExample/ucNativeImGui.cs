@@ -28,18 +28,7 @@ namespace AvaloniaImGuiExample
 
         public event Action<GL, ImGuiController>? OnImGuiRender;
 
-        public double ToNativeDpiScale
-        {
-            get
-            {
-                double dpiScale = VisualRoot.RenderScaling;
-                if (OperatingSystem.IsMacOS())
-                {
-                    dpiScale = 1.0;
-                }
-                return dpiScale;
-            }
-        }
+        public double ToNativeDpiScale => VisualRoot.RenderScaling;
 
         public int NativePixelWidth => (int)(Bounds.Width * ToNativeDpiScale);
         public int NativePixelHeight => (int)(Bounds.Height * ToNativeDpiScale);
