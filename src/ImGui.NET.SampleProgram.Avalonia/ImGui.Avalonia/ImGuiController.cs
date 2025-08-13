@@ -183,8 +183,8 @@ namespace AvaloniaImGuiExample
         private void CreateDeviceObjects()
         {
             // Load shaders from embedded resources
-            var vertexShaderSource = LoadEmbeddedShader("AvaloniaImGuiExample.Shaders.imgui_vertex.glsl");
-            var fragmentShaderSource = LoadEmbeddedShader("AvaloniaImGuiExample.Shaders.imgui_fragment.glsl");
+            var vertexShaderSource = LoadEmbeddedShader("ImGui.NET.SampleProgram.Avalonia.Shaders.imgui_vertex.glsl");
+            var fragmentShaderSource = LoadEmbeddedShader("ImGui.NET.SampleProgram.Avalonia.Shaders.imgui_fragment.glsl");
 
             var vertexShader = CreateShader(ShaderType.VertexShader, vertexShaderSource);
             var fragmentShader = CreateShader(ShaderType.FragmentShader, fragmentShaderSource);
