@@ -42,6 +42,10 @@ public partial class ucImGui : UserControl
         //this.AddHandler(TextInputEvent, HandleTextInput, Avalonia.Interactivity.RoutingStrategies.Tunnel | Avalonia.Interactivity.RoutingStrategies.Bubble);
     }
 
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+    }
 
     private void HandlePointerPressed(object? sender, PointerPressedEventArgs e)
     {

@@ -95,6 +95,14 @@ namespace AvaloniaImGuiExample
             }
         }
 
+        protected override void OnOpenGlDeinit(GlInterface gl)
+        {
+            _controller?.Dispose();
+            _controller = null;
+
+            base.OnOpenGlDeinit(gl);
+        }
+
         private void UpdateInputState()
         {
             if (_controller == null) return;
@@ -284,7 +292,7 @@ namespace AvaloniaImGuiExample
 
         protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
         {
-            _controller?.Dispose();
+            //_controller?.Dispose();
             base.OnDetachedFromVisualTree(e);
         }
     }
