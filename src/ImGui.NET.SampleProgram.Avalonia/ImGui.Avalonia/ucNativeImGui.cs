@@ -54,7 +54,7 @@ namespace AvaloniaImGuiExample
             _gl = GL.GetApi(gl.GetProcAddress);
             
             // Initialize ImGui controller
-            _controller = new ImGuiController(_gl, NativePixelWidth, NativePixelHeight);
+            _controller = new ImGuiController(_gl, NativePixelWidth, NativePixelHeight, ToNativeDpiScale);
             
             // Setup render loop
             DispatcherTimer.Run(() =>

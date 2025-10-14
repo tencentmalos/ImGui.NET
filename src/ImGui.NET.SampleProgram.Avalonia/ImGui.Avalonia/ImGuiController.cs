@@ -21,7 +21,7 @@ namespace AvaloniaImGuiExample
         private int _windowHeight;
 
 
-        public ImGuiController(GL gl, int width, int height)
+        public ImGuiController(GL gl, int width, int height, double dpiScale)
         {
             _gl = gl;
             _windowWidth = width;
@@ -36,6 +36,7 @@ namespace AvaloniaImGuiExample
             // Set display size
             io.DisplaySize = new Vector2(width, height);
             io.DisplayFramebufferScale = Vector2.One;
+            io.FontGlobalScale = (float)dpiScale;
 
             // Create OpenGL resources
             CreateDeviceObjects();
